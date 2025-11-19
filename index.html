@@ -326,14 +326,14 @@
       border-bottom: none;
     }
 
-    /* SKILLS SECTION STYLES */
+    /* SKILLS SECTION STYLES - NEW ADDITION */
     .skills-container {
       display: flex;
       flex-direction: column;
       gap: 30px;
       width: 100%;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 40px auto 0;
     }
 
     .skill-category {
@@ -1147,103 +1147,140 @@
 
 <!-- ABOUT SECTION -->
 <section id="about">
-  <h2>MY SKILLS &#128151; </h2>
+  <h2>BIODATA ABOUT ME &#128151; </h2>
 
-  <div class="skills-container">
-    <!-- Personal Skills -->
-    <div class="skill-category">
-      <h3>🌟 PERSONAL SKILLS</h3>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Time Management</span>
-          <span class="skill-percent">90%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="90"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Problem Solving</span>
-          <span class="skill-percent">90%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="90"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Teamwork</span>
-          <span class="skill-percent">95%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="95"></div>
-        </div>
-      </div>
-    </div>
+  <div class="about-content">
+    <div class="about-photo">
 
-    <!-- Software Skills -->
-    <div class="skill-category">
-      <h3>💻 SOFTWARE SKILLS</h3>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Microsoft Word</span>
-          <span class="skill-percent">95%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="95"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Microsoft Excel</span>
-          <span class="skill-percent">80%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="80"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Power Point</span>
-          <span class="skill-percent">80%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="80"></div>
-        </div>
-      </div>
-    </div>
+      <img src="picture2.jpg" alt="Nurin profile circle" class="circle-photo">
 
-    <!-- Design Skills -->
-    <div class="skill-category">
-      <h3>🎨 DESIGN SKILLS</h3>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Canva</span>
-          <span class="skill-percent">95%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="95"></div>
-        </div>
+      <div class="biodata">
+
+        <!-- TABLE BIODATA -->
+        <table class="biodata-table">
+          <tr><th colspan="2">PERSONAL DETAILS</th></tr>
+          <tr><td>Name:</td><td>Nurin Natasya binti Shopiee</td></tr>
+          <tr><td>Address:</td><td>No. 2106 Pokok Machang, 13300 Tasek Gelugor, Pulau Pinang</td></tr>
+          <tr><td>Email:</td><td>nuriennatasyaa@gmail.com</td></tr>
+          <tr><td>Mobile Phone:</td><td>+60 11-17621801</td></tr>
+        </table>
+
+        <table class="biodata-table">
+          <tr><th colspan="2">EDUCATION</th></tr>
+          <tr><td>Primary School:</td><td>SK Pokok Sena</td></tr>
+          <tr><td>Secondary School:</td><td>SMK Pokok Sena</td></tr>
+          <tr><td>University:</td><td>Diploma in Information Management (UiTM Kedah)</td></tr>
+        </table>
+
+        <!-- SKILLS TABLE TUKAR KE VISUAL -->
+        <table class="biodata-table">
+          <tr><th colspan="2">SKILLS</th></tr>
+          <tr>
+            <td colspan="2">
+              <!-- Skills Visual Section -->
+              <div class="skills-container">
+                <!-- Personal Skills -->
+                <div class="skill-category">
+                  <h3>🌟 PERSONAL SKILLS</h3>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Time Management</span>
+                      <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="90"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Problem Solving</span>
+                      <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="90"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Teamwork</span>
+                      <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="95"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Software Skills -->
+                <div class="skill-category">
+                  <h3>💻 SOFTWARE SKILLS</h3>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Microsoft Word</span>
+                      <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="95"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Microsoft Excel</span>
+                      <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="80"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Power Point</span>
+                      <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="80"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Design Skills -->
+                <div class="skill-category">
+                  <h3>🎨 DESIGN SKILLS</h3>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Canva</span>
+                      <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="95"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">CapCut</span>
+                      <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="80"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Web Design (HTML & CSS)</span>
+                      <span class="skill-percent">70%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="70"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+
       </div>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">CapCut</span>
-          <span class="skill-percent">80%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="80"></div>
-        </div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-header">
-          <span class="skill-name">Web Design (HTML & CSS)</span>
-          <span class="skill-percent">70%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" data-width="70"></div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1606,6 +1643,7 @@
 
 </body>
 </html>
+
 
 
 
