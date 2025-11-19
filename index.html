@@ -239,6 +239,115 @@
       width: 560px;
     }
 
+    /* GALLERY SECTION */
+    #gallery {
+      padding: 80px 60px;
+      background-color: #963956;
+      color: white;
+      text-align: center;
+    }
+
+    #gallery h2 {
+      color: pink;
+      font-family: 'algerian';
+      font-size: 34px;
+      margin-bottom: 30px;
+    }
+
+    .gallery-intro {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      font-size: 20px;
+      line-height: 1.6;
+      color: white;
+      font-family: 'Times New Roman', serif;
+    }
+
+    .gallery-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .gallery-btn {
+      background-color: #CCA1A1;
+      color: #963956;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Times New Roman', serif;
+    }
+
+    .gallery-btn:hover {
+      background-color: #ffb3d9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .gallery-btn.active {
+      background-color: #ff8ac6;
+      color: white;
+    }
+
+    .photo-grid {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .photo-grid.active {
+      display: grid;
+    }
+
+    .polaroid-frame {
+      background: white;
+      padding: 15px 15px 30px 15px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transform: rotate(1deg);
+      transition: all 0.3s ease;
+      width: 250px;
+      height: 280px;
+      margin: 0 auto;
+    }
+
+    .polaroid-frame:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .polaroid-img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+      background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #963956;
+      font-size: 14px;
+      font-family: 'Times New Roman', serif;
+    }
+
+    .polaroid-label {
+      text-align: center;
+      color: #963956;
+      font-family: 'Times New Roman', serif;
+      font-size: 16px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
     footer {
       background-color: #CCA1A1;
       color: #963956;
@@ -267,6 +376,19 @@
       .song, .wide-song {
         width: 100%;
         max-width: 300px;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .gallery-btn {
+        width: 200px;
       }
     }
   </style>
@@ -371,16 +493,197 @@
   </div>
 </section>
 
+<!-- GALLERY SECTION -->
+<section id="gallery">
+  <h2>MY PHOTOGRAPHY GALLERY 📸</h2>
+  
+  <div class="gallery-intro">
+    <p>I absolutely love capturing aesthetic moments through my lens! 📷✨</p>
+    <p>Photography allows me to freeze beautiful moments in time and see the world from different perspectives. 
+       Whether it's the serene beauty of nature, delicious foods that tempt the senses, precious moments with friends, 
+       or random beautiful encounters - each photo tells its own unique story.</p>
+    <p>Explore my visual diary below! 🎨</p>
+  </div>
+
+  <!-- Gallery Filter Buttons -->
+  <div class="gallery-buttons">
+    <button class="gallery-btn active" onclick="showGallery('nature')">🌿 Nature</button>
+    <button class="gallery-btn" onclick="showGallery('foods')">🍕 Foods</button>
+    <button class="gallery-btn" onclick="showGallery('friends')">👫 Friends</button>
+    <button class="gallery-btn" onclick="showGallery('randoms')">🎲 Randoms</button>
+  </div>
+
+  <!-- Nature Gallery -->
+  <div id="nature-gallery" class="photo-grid active">
+    <!-- 10 Nature Photos -->
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 1</div>
+      <div class="polaroid-label">Sunset View</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 2</div>
+      <div class="polaroid-label">Forest Walk</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 3</div>
+      <div class="polaroid-label">Mountain Peak</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 4</div>
+      <div class="polaroid-label">Ocean Waves</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 5</div>
+      <div class="polaroid-label">Flower Garden</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 6</div>
+      <div class="polaroid-label">Waterfall</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 7</div>
+      <div class="polaroid-label">Beach Sunset</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Nature Photo 8</div>
+      <div class="polaroid-label">Park View</div>
+    </div>
+  </div>
+
+  <!-- Foods Gallery -->
+  <div id="foods-gallery" class="photo-grid">
+    <!-- 10 Food Photos -->
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 1</div>
+      <div class="polaroid-label">Pasta Dish</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 2</div>
+      <div class="polaroid-label">Dessert Time</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 3</div>
+      <div class="polaroid-label">Coffee Art</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 4</div>
+      <div class="polaroid-label">Breakfast Set</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 5</div>
+      <div class="polaroid-label">Local Delights</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 6</div>
+      <div class="polaroid-label">Fresh Fruits</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 7</div>
+      <div class="polaroid-label">Bakery Goods</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Food Photo 8</div>
+      <div class="polaroid-label">Street Food</div>
+    </div>
+  </div>
+
+  <!-- Friends Gallery -->
+  <div id="friends-gallery" class="photo-grid">
+    <!-- 10 Friends Photos -->
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 1</div>
+      <div class="polaroid-label">Group Gathering</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 2</div>
+      <div class="polaroid-label">Birthday Party</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 3</div>
+      <div class="polaroid-label">Beach Day</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 4</div>
+      <div class="polaroid-label">Coffee Date</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 5</div>
+      <div class="polaroid-label">Study Session</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 6</div>
+      <div class="polaroid-label">Travel Buddies</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 7</div>
+      <div class="polaroid-label">Movie Night</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Friends Photo 8</div>
+      <div class="polaroid-label">Festive Celebration</div>
+    </div>
+  </div>
+
+  <!-- Randoms Gallery -->
+  <div id="randoms-gallery" class="photo-grid">
+    <!-- 10 Random Photos -->
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 1</div>
+      <div class="polaroid-label">City Lights</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 2</div>
+      <div class="polaroid-label">Art Gallery</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 3</div>
+      <div class="polaroid-label">Bookstore</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 4</div>
+      <div class="polaroid-label">Street Art</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 5</div>
+      <div class="polaroid-label">Morning Coffee</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 6</div>
+      <div class="polaroid-label">Rainy Day</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 7</div>
+      <div class="polaroid-label">Vintage Shop</div>
+    </div>
+    <div class="polaroid-frame">
+      <div class="polaroid-img">Random Photo 8</div>
+      <div class="polaroid-label">Library Corner</div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   © 2025 | little glimpse of Nurien's life
 </footer>
 
+<script>
+  function showGallery(category) {
+    // Hide all galleries
+    document.querySelectorAll('.photo-grid').forEach(gallery => {
+      gallery.classList.remove('active');
+    });
+    
+    // Remove active class from all buttons
+    document.querySelectorAll('.gallery-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    
+    // Show selected gallery and activate button
+    document.getElementById(category + '-gallery').classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+
 </body>
 </html>
-</body>
-</html>
-
-
-
-
