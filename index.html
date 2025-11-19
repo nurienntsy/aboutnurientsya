@@ -156,14 +156,16 @@
       50% { opacity: 0.7; }
     }
 
-    @keyframes starTwinkle {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.2); }
+    @keyframes bubbleFloat {
+      0% { transform: translateY(100px) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
     }
 
-    @keyframes orbit {
-      0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-      100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     /* ============================
        TABLE BIODATA STYLE
@@ -455,31 +457,23 @@
       overflow: hidden;
     }
 
-    /* Galaxy Background Elements */
-    .star {
+    /* Bubble Animations */
+    .bubble {
       position: absolute;
-      background: white;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
-      animation: starTwinkle 3s infinite ease-in-out;
+      animation: bubbleFloat 15s infinite linear;
+      pointer-events: none;
     }
 
-    .star:nth-child(1) { width: 3px; height: 3px; top: 20%; left: 10%; animation-delay: 0s; }
-    .star:nth-child(2) { width: 2px; height: 2px; top: 60%; left: 85%; animation-delay: 1s; }
-    .star:nth-child(3) { width: 4px; height: 4px; top: 40%; left: 70%; animation-delay: 2s; }
-    .star:nth-child(4) { width: 2px; height: 2px; top: 80%; left: 30%; animation-delay: 1.5s; }
-    .star:nth-child(5) { width: 3px; height: 3px; top: 30%; left: 50%; animation-delay: 0.5s; }
-
-    .planet {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(45deg, #ffb3d9, #ff8ac6);
-      opacity: 0.1;
-      animation: orbit 20s linear infinite;
-      top: 50%;
-      left: 50%;
-    }
+    .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-delay: 0s; }
+    .bubble:nth-child(2) { width: 25px; height: 25px; left: 20%; animation-delay: 2s; }
+    .bubble:nth-child(3) { width: 35px; height: 35px; left: 30%; animation-delay: 4s; }
+    .bubble:nth-child(4) { width: 20px; height: 20px; left: 40%; animation-delay: 6s; }
+    .bubble:nth-child(5) { width: 30px; height: 30px; left: 50%; animation-delay: 8s; }
+    .bubble:nth-child(6) { width: 45px; height: 45px; left: 60%; animation-delay: 10s; }
+    .bubble:nth-child(7) { width: 25px; height: 25px; left: 70%; animation-delay: 12s; }
+    .bubble:nth-child(8) { width: 35px; height: 35px; left: 80%; animation-delay: 14s; }
 
     #contact h2 {
       color: pink;
@@ -510,6 +504,7 @@
       font-size: 28px;
       margin-bottom: 40px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: pulse 2s ease-in-out infinite;
     }
 
     .contact-info {
@@ -566,13 +561,14 @@
       font-size: 28px;
       margin-bottom: 30px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: pulse 2s ease-in-out infinite;
     }
 
     .social-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 25px;
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
@@ -583,25 +579,28 @@
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.2);
       transition: all 0.4s ease;
-      cursor: pointer;
       animation: fadeUp 1s ease;
     }
 
     .social-card:hover {
-      transform: translateY(-10px) scale(1.05);
+      transform: translateY(-10px) scale(1.02);
       background: rgba(255,255,255,0.15);
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
-    .social-icon {
-      font-size: 50px;
+    .social-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
       margin-bottom: 15px;
-      display: block;
-      transition: transform 0.3s ease;
+      border: 3px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
     }
 
-    .social-card:hover .social-icon {
-      transform: scale(1.2);
+    .social-card:hover .social-logo {
+      transform: scale(1.1);
+      border-color: #ffb3d9;
     }
 
     .social-card h4 {
@@ -615,8 +614,29 @@
       color: white;
       font-size: 16px;
       font-family: 'Times New Roman', serif;
-      margin: 0;
+      margin: 0 0 20px 0;
       opacity: 0.9;
+    }
+
+    .social-btn {
+      background: linear-gradient(145deg, #CCA1A1, #ffb3d9);
+      color: #963956;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Times New Roman', serif;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .social-btn:hover {
+      background: linear-gradient(145deg, #ffb3d9, #ff8ac6);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      color: white;
     }
 
     footer {
@@ -1016,15 +1036,17 @@
 
 <!-- CONTACT SECTION -->
 <section id="contact">
-  <!-- Galaxy Background Elements -->
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="star"></div>
-  <div class="planet"></div>
+  <!-- Bubble Animations -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
   
-  <h2>CONTACT ME 🌌</h2>
+  <h2>CONTACT ME 💫</h2>
   
   <div class="contact-intro">
     <p>Let's connect and create something beautiful together! ✨</p>
@@ -1059,28 +1081,32 @@
     <div class="social-title">🌐 SOCIAL MEDIA</div>
     
     <div class="social-grid">
-      <div class="social-card" onclick="window.open('https://www.instagram.com/nurientsy?igsh=MWMxbmZxMXd2MzRlNw%3D%3D&utm_source=qr', '_blank')">
-        <span class="social-icon">📷</span>
+      <div class="social-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram" class="social-logo">
         <h4>Instagram</h4>
         <p>Follow my daily life & aesthetic posts</p>
+        <button class="social-btn" onclick="window.open('https://www.instagram.com/nurientsy?igsh=MWMxbmZxMXd2MzRlNw%3D%3D&utm_source=qr', '_blank')">Open</button>
       </div>
       
-      <div class="social-card" onclick="window.open('https://www.tiktok.com/@rientsya?_r=1&_t=ZS-91XCFAxpvu6', '_blank')">
-        <span class="social-icon">🎵</span>
+      <div class="social-card">
+        <img src="https://sf-tb-sg.ibytedtos.com/obj/eden-sg/uhtyvueh7nulogpoguhm/tiktok-icon2.png" alt="TikTok" class="social-logo">
         <h4>TikTok</h4>
         <p>Watch my fun videos & creative content</p>
+        <button class="social-btn" onclick="window.open('https://www.tiktok.com/@rientsya?_r=1&_t=ZS-91XCFAxpvu6', '_blank')">Open</button>
       </div>
       
-      <div class="social-card" onclick="window.open('https://www.threads.com/@nurientsy?igshid=NTc4MTIwNjQ2YQ==', '_blank')">
-        <span class="social-icon">💬</span>
+      <div class="social-card">
+        <img src="https://static.vecteezy.com/system/resources/previews/027/899/502/non_2x/threads-app-icon-threads-logo-threads-social-media-icon-free-png.png" alt="Threads" class="social-logo">
         <h4>Threads</h4>
         <p>Join my conversations & thoughts</p>
+        <button class="social-btn" onclick="window.open('https://www.threads.com/@nurientsy?igshid=NTc4MTIwNjQ2YQ==', '_blank')">Open</button>
       </div>
       
-      <div class="social-card" onclick="window.open('https://wa.me/qr/YXY53KR4IK46G1', '_blank')">
-        <span class="social-icon">💚</span>
+      <div class="social-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/768px-WhatsApp.svg.png" alt="WhatsApp" class="social-logo">
         <h4>WhatsApp</h4>
         <p>Chat with me directly</p>
+        <button class="social-btn" onclick="window.open('https://wa.me/qr/YXY53KR4IK46G1', '_blank')">Open</button>
       </div>
     </div>
   </div>
@@ -1111,3 +1137,4 @@
 
 </body>
 </html>
+
