@@ -145,6 +145,16 @@
       0% { opacity: 0; transform: translateY(40px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(1deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
     /* ============================
        TABLE BIODATA STYLE
        ============================ */
@@ -239,10 +249,10 @@
       width: 560px;
     }
 
-    /* GALLERY SECTION */
+    /* GALLERY SECTION - UPDATED */
     #gallery {
       padding: 80px 60px;
-      background-color: #963956;
+      background: linear-gradient(135deg, #963956 0%, #8c304a 100%);
       color: white;
       text-align: center;
     }
@@ -252,6 +262,8 @@
       font-family: 'algerian';
       font-size: 34px;
       margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: sparkle 2s ease-in-out infinite;
     }
 
     .gallery-intro {
@@ -261,47 +273,74 @@
       line-height: 1.6;
       color: white;
       font-family: 'Times New Roman', serif;
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      animation: fadeUp 1s ease;
     }
 
     .gallery-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 40px;
+      gap: 15px;
+      margin-bottom: 50px;
       flex-wrap: wrap;
     }
 
     .gallery-btn {
-      background-color: #CCA1A1;
+      background: linear-gradient(145deg, #CCA1A1, #ffb3d9);
       color: #963956;
       border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-size: 18px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       font-family: 'Times New Roman', serif;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .gallery-btn:hover::before {
+      left: 100%;
     }
 
     .gallery-btn:hover {
-      background-color: #ffb3d9;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background: linear-gradient(145deg, #ffb3d9, #ff8ac6);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      color: white;
     }
 
     .gallery-btn.active {
-      background-color: #ff8ac6;
+      background: linear-gradient(145deg, #ff8ac6, #ff69b4);
       color: white;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(255,105,180,0.4);
     }
 
     .photo-grid {
       display: none;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
       justify-content: center;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
+      animation: fadeUp 0.8s ease;
     }
 
     .photo-grid.active {
@@ -310,43 +349,91 @@
 
     .polaroid-frame {
       background: white;
-      padding: 15px 15px 30px 15px;
-      border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transform: rotate(1deg);
-      transition: all 0.3s ease;
-      width: 250px;
-      height: 280px;
+      padding: 18px 18px 35px 18px;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transform: rotate(var(--rotate, 1deg));
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      width: 220px;
+      height: 270px;
       margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      animation: float 4s ease-in-out infinite;
+      animation-delay: calc(var(--delay, 0) * 0.1s);
+    }
+
+    .polaroid-frame::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+      pointer-events: none;
     }
 
     .polaroid-frame:hover {
-      transform: rotate(0deg) scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transform: rotate(0deg) scale(1.08);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+      z-index: 10;
     }
 
     .polaroid-img {
-      width: 220px;
-      height: 220px;
+      width: 100%;
+      height: 190px;
       object-fit: cover;
-      border: 1px solid #ddd;
-      background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #963956;
-      font-size: 14px;
-      font-family: 'Times New Roman', serif;
+      border: 2px solid #f0f0f0;
+      border-radius: 4px;
+      background: linear-gradient(45deg, #f8f8f8, #e8e8e8);
+      display: block;
+      transition: all 0.4s ease;
+    }
+
+    .polaroid-frame:hover .polaroid-img {
+      transform: scale(1.05);
+      border-color: #ffb3d9;
     }
 
     .polaroid-label {
       text-align: center;
       color: #963956;
       font-family: 'Times New Roman', serif;
-      font-size: 16px;
-      margin-top: 10px;
+      font-size: 15px;
+      margin-top: 12px;
       font-weight: bold;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
     }
+
+    .polaroid-frame:hover .polaroid-label {
+      color: #ff69b4;
+    }
+
+    /* Random rotation for polaroids */
+    .polaroid-frame:nth-child(odd) {
+      --rotate: -1deg;
+    }
+    .polaroid-frame:nth-child(even) {
+      --rotate: 2deg;
+    }
+    .polaroid-frame:nth-child(3n) {
+      --rotate: 0.5deg;
+    }
+    .polaroid-frame:nth-child(4n) {
+      --rotate: -1.5deg;
+    }
+
+    /* Animation delays */
+    .polaroid-frame:nth-child(1) { --delay: 1; }
+    .polaroid-frame:nth-child(2) { --delay: 2; }
+    .polaroid-frame:nth-child(3) { --delay: 3; }
+    .polaroid-frame:nth-child(4) { --delay: 4; }
+    .polaroid-frame:nth-child(5) { --delay: 5; }
+    .polaroid-frame:nth-child(6) { --delay: 6; }
+    .polaroid-frame:nth-child(7) { --delay: 7; }
+    .polaroid-frame:nth-child(8) { --delay: 8; }
 
     footer {
       background-color: #CCA1A1;
@@ -356,6 +443,18 @@
       font-size: 16px;
       font-weight: bold;
       letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 1200px) {
+      .photo-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 800px) {
@@ -389,6 +488,26 @@
 
       .gallery-btn {
         width: 200px;
+      }
+
+      .polaroid-frame {
+        width: 200px;
+        height: 250px;
+      }
+
+      .polaroid-img {
+        height: 170px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-buttons {
+        gap: 10px;
+      }
+      
+      .gallery-btn {
+        padding: 12px 20px;
+        font-size: 14px;
       }
     }
   </style>
@@ -507,9 +626,9 @@
 
   <!-- Gallery Filter Buttons -->
   <div class="gallery-buttons">
-    <button class="gallery-btn active" onclick="showGallery('sunset')">🌿 Sunset</button>
+    <button class="gallery-btn active" onclick="showGallery('sunset')">🌅 Sunset</button>
     <button class="gallery-btn" onclick="showGallery('foods')">🍕 Foods</button>
-    <button class="gallery-btn" onclick="showGallery('myself')">🎲 Myself</button>
+    <button class="gallery-btn" onclick="showGallery('myself')">💖 Myself</button>
     <button class="gallery-btn" onclick="showGallery('friends')">👫 Friends</button>
     <button class="gallery-btn" onclick="showGallery('randoms')">🎲 Randoms</button>
   </div>
@@ -517,190 +636,186 @@
   <!-- Sunset Gallery -->
   <div id="sunset-gallery" class="photo-grid active">
     <!-- 8 Sunset Photos -->
-   <div class="polaroid-frame">
-  <img src="sunset1.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="sunset2.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
-    
     <div class="polaroid-frame">
-  <img src="sunset3.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
-    
+      <img src="sunset1.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Golden Hour</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="sunset4.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
-    
+      <img src="sunset2.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Sky Colors</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="sunset5.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="sunset6.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
-    
+      <img src="sunset3.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Evening Glow</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="sunset7.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="sunset8.jpg" alt="Beautiful sunset" class="polaroid-img">
-  <div class="polaroid-label">Sunset View</div>
-   </div>
+      <img src="sunset4.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Horizon View</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="sunset5.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Sunset Bliss</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="sunset6.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Twilight</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="sunset7.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Dusk Magic</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="sunset8.jpg" alt="Beautiful sunset" class="polaroid-img">
+      <div class="polaroid-label">Last Light</div>
+    </div>
   </div>
 
   <!-- Foods Gallery -->
   <div id="foods-gallery" class="photo-grid">
     <!-- 8 Food Photos -->
     <div class="polaroid-frame">
-  <img src="food1.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="food2.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="food3.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="food4.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
-    
+      <img src="food1.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Yummy Treat</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="food5.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
-    
-  <div class="polaroid-frame">
-  <img src="food6.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="food7.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="food8.jpg" alt="Delicious food" class="polaroid-img">
-   </div>
+      <img src="food2.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Sweet Delight</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="food3.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Food Art</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="food4.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Culinary Joy</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="food5.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Tasty Bite</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="food6.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Delicious</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="food7.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Foodie Moment</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="food8.jpg" alt="Delicious food" class="polaroid-img">
+      <div class="polaroid-label">Yum Yum</div>
+    </div>
   </div>
 
   <!-- Myself Gallery -->
   <div id="myself-gallery" class="photo-grid">
     <!-- 8 Myself Photos -->
     <div class="polaroid-frame">
-  <img src="myself1.jpg" alt="my picture" class="polaroid-img">
-   </div>
-    
+      <img src="myself1.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">Me ✨</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="myself2.jpg" alt="my picture" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="myself3.jpg" alt="my picture" class="polaroid-img">
-   </div>
-    
+      <img src="myself2.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">Self Love</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="myself4.jpg" alt="my picture" class="polaroid-img">
-   </div>
-    
+      <img src="myself3.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">My Style</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="myself5.jpg" alt="my picture" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="myself6.jpg" alt="my picture" class="polaroid-img">
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="myself7.jpg" alt="my picture" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="myself8.jpg" alt="my picture" class="polaroid-img">
-   </div>
+      <img src="myself4.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">Confident</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="myself5.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">Happy Me</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="myself6.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">Smile 😊</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="myself7.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">My Moment</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="myself8.jpg" alt="My picture" class="polaroid-img">
+      <div class="polaroid-label">Being Me</div>
+    </div>
   </div>
 
-    <!-- Friends Gallery -->
+  <!-- Friends Gallery -->
   <div id="friends-gallery" class="photo-grid">
     <!-- 8 Friends Photos -->
-   <div class="polaroid-frame">
-  <img src="friends1.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
     <div class="polaroid-frame">
-  <img src="friends2.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
-   <div class="polaroid-frame">
-  <img src="friends3.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
+      <img src="friends1.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">Besties 💕</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="friends4.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
+      <img src="friends2.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">Squad Goals</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="friends5.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="friends6.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="friends7.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="friends8.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
+      <img src="friends3.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">Fun Times</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="friends4.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">Together</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="friends5.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">Friendship</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="friends6.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">Memories</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="friends7.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">Good Times</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="friends8.jpg" alt="My friend" class="polaroid-img">
+      <div class="polaroid-label">BFFs</div>
+    </div>
   </div>
 
   <!-- Randoms Gallery -->
   <div id="randoms-gallery" class="photo-grid">
     <!-- 8 Random Photos -->
-   <div class="polaroid-frame">
-  <img src="randoms1.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
     <div class="polaroid-frame">
-  <img src="randoms2.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
+      <img src="randoms1.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Random Joy</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="randoms3.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="randoms4.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="randoms5.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
- <div class="polaroid-frame">
-  <img src="randoms6.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
-     <div class="polaroid-frame">
-  <img src="randoms7.jpg" alt="my friend" class="polaroid-img">
-   </div>
-    
+      <img src="randoms2.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Life's Beauty</div>
+    </div>
     <div class="polaroid-frame">
-  <img src="randoms8.jpg" alt="my friend" class="polaroid-img">
-   </div>
+      <img src="randoms3.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Little Things</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="randoms4.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Everyday Magic</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="randoms5.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Found Beauty</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="randoms6.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Happy Accidents</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="randoms7.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Serendipity</div>
+    </div>
+    <div class="polaroid-frame">
+      <img src="randoms8.jpg" alt="Random moment" class="polaroid-img">
+      <div class="polaroid-label">Magic Moments</div>
+    </div>
   </div>
 </section>
 
@@ -729,6 +844,7 @@
 
 </body>
 </html>
+
 
 
 
