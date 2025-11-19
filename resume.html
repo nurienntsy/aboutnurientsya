@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8"> 
+  <title>Nurien's Page</title>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #963956; /* deep rose background */
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 50px;
+      background-color: #CCA1A1;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin: 0;
+      color: #963956;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #963956;
+      margin-left: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    /* --- Layout for image + intro text --- */
+    .main-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 100px;
+    }
+
+    .profile-img {
+      width: 350px;
+      height: 430px;
+      border-radius: 30px;
+      object-fit: cover;
+      border: 10px solid #CCA1A1;
+      box-shadow: 0 20px 20px rgba(0,0,0,0.3);
+    }
+
+    .intro {
+      margin-left: 60px;
+    }
+
+    .intro .welcome {
+      font-family: 'algerian';
+      font-weight: bold;
+      color: pink;
+      text-align: left;
+      font-size: 34px;
+      margin-bottom: 20px;
+    }
+
+    .intro .details {
+      font-family: 'Times New Roman', serif;
+      color: white;
+      text-align: justify;
+      font-size: 22px;
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    /* ABOUT SECTION */
+    #about {
+      padding: 80px 60px;
+      color: white;
+      background-color: #963956;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #about h2 {
+      color: pink;
+      font-family: 'algerian';
+      font-size: 34px;
+      margin-bottom: 40px;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .about-photo {
+      display: flex;
+      flex-direction: row;
+      align-items: left;
+      gap: 50px;
+      photo-align: left;
+    }
+
+    .circle-photo {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 10px solid #CCA1A1;
+      box-shadow: 0 25px 25px rgba(0,0,0,0.3);
+    }
+
+    .biodata {
+      background-color: rgba(255,255,255,0.1);
+      padding: 40px 30px;
+      border-radius: 55px;
+      font-family: 'Times New Roman', serif;
+      margin-top: -30px;
+    }
+    
+     /* --- ANIMATION --- */
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #ff8ac6, 0 0 20px #ff8ac6; }
+      50% { box-shadow: 0 0 20px #ffb3dd, 0 0 35px #ff8ac6; }
+      100% { box-shadow: 0 0 10px #ff8ac6, 0 0 20px #ff8ac6; }
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    /* ============================
+       TABLE BIODATA STYLE
+       ============================ */
+    .biodata-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      table-shadow: 0 50px 50px rgba(0,0,0,0.3);
+      animation: glow 3s infinite ease-in-out, fadeUp 1s ease;
+    }
+
+    .biodata-table th {
+      background-color: #CCA1A1;
+      color: #963956;
+      padding: 12px;
+      text-align: left;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    .biodata-table td {
+      padding: 12px;
+      color: white;
+      font-size: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .biodata-table tr:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .biodata-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* SONG SECTION */
+    #songs {
+      padding: 80px 100px;
+      background-color: #8c304a;
+      color: white;
+      text-align: center;
+    }
+
+    #songs h2 {
+      color: pink;
+      font-family: 'algerian';
+      font-size: 34px;
+      margin-bottom: 30px;
+    }
+
+    .song-list {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .song {
+      background-color: #CCA1A1;
+      color: #963956;
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+      font-weight: bold;
+    }
+
+    .song iframe {
+      border-radius: 10px;
+      width: 100%;
+      height: 180px;
+    }
+
+    footer {
+      background-color: #CCA1A1;
+      color: #963956;
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 800px) {
+      .main-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .intro {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+
+      .about-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <h1>&#128151; NURIN NATASYA &#128151;</h1>
+  <nav>
+    <a href="#home">Home</a> |
+    <a href="#about">About</a> |
+    <a href="#songs">Hobby</a> |
+    <a href="#gallery">Gallery</a> |
+    <a href="#contact">Contact</a> 
+  </nav>
+</header>
+
+<!-- HOME SECTION -->
+<section class="main-section" id="home">
+  <img src="PROFILE PICTURES.jpg" alt="Photo of Nurin Natasya" class="profile-img">
+  
+  <div class="intro">
+    <p class="welcome">Welcome to my portfolio website.</p>
+    <p class="details">
+      Hi, I'm Nurin Natasya — someone who loves creativity, aesthetic and connecting with people.
+      This page is a little glimpse of my world 🌈
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+  <h2>BIODATA ABOUT ME</h2>
+
+  <div class="about-content">
+    <div class="about-photo">
+
+      <img src="NURIN PROFILE CIRCLE.jpg" alt="Nurin profile circle" class="circle-photo">
+
+      <div class="biodata">
+
+        <!-- TABLE BIODATA -->
+        <table class="biodata-table">
+          <tr><th colspan="2">PERSONAL DETAILS</th></tr>
+          <tr><td>Name:</td><td>Nurin Natasya binti Shopiee</td></tr>
+          <tr><td>Address:</td><td>No. 2106 Pokok Machang, 13300 Tasek Gelugor, Pulau Pinang</td></tr>
+          <tr><td>Email:</td><td>nuriennatasyaa@gmail.com</td></tr>
+          <tr><td>Mobile Phone:</td><td>+60 11-17621801</td></tr>
+        </table>
+
+        <table class="biodata-table">
+          <tr><th colspan="2">EDUCATION</th></tr>
+          <tr><td>Primary School:</td><td>SK Pokok Sena</td></tr>
+          <tr><td>Secondary School:</td><td>SMK Pokok Sena</td></tr>
+          <tr><td>Diploma:</td><td>Diploma in Information Management (UiTM Kedah)</td></tr>
+        </table>
+
+        <table class="biodata-table">
+          <tr><th colspan="2">SKILLS</th></tr>
+          <tr><td>Soft Skills</td><td>Communication, Teamwork, Creativity, Problem Solving</td></tr>
+          <tr><td>Software Skills</td><td>Canva, Microsoft Office, Photoshop, HTML & CSS</td></tr>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SONG / HOBBY SECTION -->
+<section id="songs">
+  <h2>My Hobby — Listening to Music 🎧</h2>
+
+  <p style="max-width:700px; margin:auto; font-size:20px; color:pink; font-family:'Times New Roman';">
+    Music has always been my escape. Whether it's Malay vibes, English hits, or deep galau songs,
+    listening to music helps me relax, reflect, and feel connected to my emotions 🎶.
+    Here are my favourite playlists by genre!
+  </p>
+
+  <br><br>
+
+  <!-- ========== POP BALLAD PLAYLIST ========== -->
+  <h2 style="color:#ffb3d9; font-family:algerian;">🎀 POP BALLAD PLAYLIST 🎀</h2>
+
+  <div class="song-list">
+    <div class="song">
+      <p>🎧 Song 1: "Sedetik Lebih" — Anuar Zain</p>
+      <button onclick="playSong('sedetik Lebih.mp3')">Play</button>
+    </div>
+
+    <div class="song">
+      <p>🎧 Song 2: "Kasih Tercipta" — Faizal Tahir</p>
+      <button onclick="playSong('Kasih Tercipta.mp3')">Play</button>
+    </div>
+
+    <div class="song">
+      <p>🎧 Song 3: "Menjaga Jodoh Orang Lain" — Ara Johari</p>
+      <button onclick="playSong('Menjaga Jodoh Orang Lain.mp3')">Play</button>
+    </div>
+  </div>
+
+  <!-- ========== R&B PLAYLIST ========== -->
+  <h2 style="color:#ffb3d9; font-family:algerian; margin-top:60px;">🎶 R&B PLAYLIST 🎶</h2>
+
+  <div class="song-list">
+    <div class="song">
+      <p>🎧 Song 1: "1 Of 1" — Kale Joseph</p>
+      <button onclick="playSong('1 Of 1.mp3')">Play</button>
+    </div>
+
+    <div class="song">
+      <p>🎧 Song 2: "Sial" — Mahalini</p>
+      <button onclick="playSong('sial.mp3')">Play</button>
+    </div>
+
+    <div class="song">
+      <p>🎧 Song 3: "Luka" — Zynakal & Yonnyboii</p>
+      <button onclick="playSong('luka.mp3')">Play</button>
+    </div>
+  </div>
+
+  <!-- PLAYER AREA -->
+  <div style="margin-top:60px;">
+    <h3 style="color:#ffd6e8; font-family:algerian;">🎬 Now Playing</h3>
+
+    <!-- CHANGE: Using audio instead of iframe -->
+    <audio id="musicPlayer" controls style="width:560px; border-radius:20px; border:4px solid #CCA1A1;"></audio>
+  </div>
+
+</section>
+
+<!-- JAVASCRIPT PLAYER FUNCTION -->
+<script>
+  function playSong(file) {
+    const player = document.getElementById("musicPlayer");
+    player.src = file;  // load mp3
+    player.play();      // play mp3
+  }
+</script>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 | little glimpse of Nurien's life
+</footer>
+
+</body>
+</html>
