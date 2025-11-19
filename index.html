@@ -2,7 +2,7 @@
 <html lang="en">
 <head> 
   <meta charset="UTF-8"> 
-  <title>Nurien's Page</title>
+  <title>Nurien's Tech Portfolio</title>
 
   <style>
     html {
@@ -10,10 +10,49 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background-color: #963956; /* deep rose background */
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
       margin: 0;
       padding: 0;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    /* Tech Background Elements */
+    .tech-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .grid-line {
+      position: absolute;
+      background: linear-gradient(90deg, transparent, #00ffff, transparent);
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .floating-tech {
+      position: absolute;
+      background: radial-gradient(circle, #00ffff 0%, transparent 70%);
+      border-radius: 50%;
+      animation: floatTech 15s infinite linear;
+      opacity: 0.1;
+    }
+
+    @keyframes floatTech {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 50px) rotate(90deg); }
+      50% { transform: translate(50px, 100px) rotate(180deg); }
+      75% { transform: translate(-50px, 50px) rotate(270deg); }
     }
 
     header {
@@ -21,28 +60,64 @@
       justify-content: space-between;
       align-items: center;
       padding: 8px 50px;
-      background-color: #CCA1A1;
+      background: rgba(16, 16, 32, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #00ffff;
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
 
     h1 {
       font-size: 40px;
       margin: 0;
-      color: #963956;
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+      animation: textGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 10px rgba(255, 0, 255, 0.5); }
+      100% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.6); }
     }
 
     nav a {
       text-decoration: none;
-      color: #963956;
+      color: #00ffff;
       margin-left: 15px;
       font-size: 18px;
       font-weight: bold;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    nav a:hover::before {
+      left: 100%;
     }
 
     nav a:hover {
-      color: white;
+      color: #ffffff;
+      border-color: #ff00ff;
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
     }
 
     /* --- Layout for image + intro text --- */
@@ -51,54 +126,113 @@
       align-items: center;
       justify-content: space-between;
       padding: 80px 100px;
+      position: relative;
     }
 
     .profile-img {
       width: 350px;
       height: 430px;
-      border-radius: 30px;
+      border-radius: 20px;
       object-fit: cover;
-      border: 10px solid #CCA1A1;
-      box-shadow: 0 20px 20px rgba(0,0,0,0.3);
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      transition: all 0.5s ease;
+      animation: imageFloat 6s ease-in-out infinite;
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    @keyframes imageFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05) rotate(-2deg);
+      box-shadow: 0 0 50px rgba(255, 0, 255, 0.7);
+      border-color: #ff00ff;
     }
 
     .intro {
       margin-left: 60px;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .intro .welcome {
-      font-family: 'algerian';
+      font-family: 'Courier New', monospace;
       font-weight: bold;
-      color: pink;
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       text-align: left;
       font-size: 34px;
       margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+      animation: textShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes textShimmer {
+      0%, 100% { background-position: -200% center; }
+      50% { background-position: 200% center; }
     }
 
     .intro .details {
-      font-family: 'Times New Roman', serif;
-      color: white;
+      font-family: 'Courier New', monospace;
+      color: #b8b8b8;
       text-align: justify;
       font-size: 22px;
       line-height: 1.6;
       max-width: 500px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+      animation: fadeInUp 2s ease 0.5s both;
     }
 
     /* ABOUT SECTION */
     #about {
       padding: 80px 60px;
-      color: white;
-      background-color: #963956;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      color: #e0e0e0;
+      background: linear-gradient(135deg, rgba(16, 16, 32, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid #00ffff;
+      margin: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, #ff00ff, transparent);
+      animation: scanLine 3s linear infinite;
+    }
+
+    @keyframes scanLine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     #about h2 {
-      color: pink;
-      font-family: 'algerian';
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Courier New', monospace;
       font-size: 34px;
       margin-bottom: 40px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+      animation: textGlow 2s ease-in-out infinite alternate;
     }
 
     .about-content {
@@ -112,9 +246,8 @@
     .about-photo {
       display: flex;
       flex-direction: row;
-      align-items: left;
+      align-items: center;
       gap: 50px;
-      photo-align: left;
     }
 
     .circle-photo {
@@ -122,83 +255,71 @@
       height: 350px;
       border-radius: 50%;
       object-fit: cover;
-      border: 10px solid #CCA1A1;
-      box-shadow: 0 25px 25px rgba(0,0,0,0.3);
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+      transition: all 0.5s ease;
+      animation: techPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes techPulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.5); }
+      50% { box-shadow: 0 0 50px rgba(255, 0, 255, 0.7), 0 0 70px rgba(0, 255, 255, 0.5); }
+    }
+
+    .circle-photo:hover {
+      transform: scale(1.05);
+      border-color: #ff00ff;
     }
 
     .biodata {
-      background-color: rgba(255,255,255,0.1);
+      background: rgba(16, 16, 32, 0.6);
       padding: 40px 30px;
-      border-radius: 55px;
-      font-family: 'Times New Roman', serif;
-      margin-top: -30px;
-    }
-    
-     /* --- ANIMATION --- */
-    @keyframes glow {
-      0% { box-shadow: 0 0 10px #ff8ac6, 0 0 20px #ff8ac6; }
-      50% { box-shadow: 0 0 20px #ffb3dd, 0 0 35px #ff8ac6; }
-      100% { box-shadow: 0 0 10px #ff8ac6, 0 0 20px #ff8ac6; }
+      border-radius: 15px;
+      font-family: 'Courier New', monospace;
+      border: 1px solid #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      animation: fadeInUp 1s ease;
     }
 
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(40px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(1deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
-    }
-
-    @keyframes sparkle {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    @keyframes bubbleFloat {
-      0% { transform: translateY(100px) rotate(0deg); opacity: 0; }
-      10% { opacity: 0.7; }
-      90% { opacity: 0.7; }
-      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    /* ============================
-       TABLE BIODATA STYLE
-       ============================ */
+    /* TABLE BIODATA STYLE - TECH THEME */
     .biodata-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 15px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 12px;
+      background: rgba(16, 16, 32, 0.8);
+      border-radius: 10px;
       overflow: hidden;
-      table-shadow: 0 50px 50px rgba(0,0,0,0.3);
-      animation: glow 3s infinite ease-in-out, fadeUp 1s ease;
+      border: 1px solid #00ffff;
+      animation: glow 3s infinite ease-in-out, fadeInUp 1s ease;
     }
 
     .biodata-table th {
-      background-color: #CCA1A1;
-      color: #963956;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      color: #0c0c0c;
       padding: 12px;
       text-align: left;
       font-size: 20px;
       letter-spacing: 1px;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
     }
 
     .biodata-table td {
       padding: 12px;
-      color: white;
+      color: #ff00ff; /* Changed to pink */
       font-size: 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      font-family: 'Courier New', monospace;
+      transition: all 0.3s ease;
     }
 
     .biodata-table tr:hover {
-      background-color: rgba(255,255,255,0.1);
+      background: rgba(0, 255, 255, 0.1);
+    }
+
+    .biodata-table tr:hover td {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ff00ff;
     }
 
     .biodata-table tr:last-child td {
@@ -208,16 +329,44 @@
     /* SONG SECTION */
     #songs {
       padding: 80px 100px;
-      background-color: #8c304a;
-      color: white;
+      background: linear-gradient(135deg, rgba(16, 16, 32, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+      color: #e0e0e0;
       text-align: center;
+      border: 1px solid #00ffff;
+      margin: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #songs::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+      animation: shimmer 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     #songs h2 {
-      color: pink;
-      font-family: 'algerian';
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Courier New', monospace;
       font-size: 34px;
       margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+      animation: textGlow 2s ease-in-out infinite alternate;
     }
 
     .song-list {
@@ -228,32 +377,59 @@
     }
 
     .song {
-      background-color: #CCA1A1;
-      color: #963956;
+      background: rgba(16, 16, 32, 0.8);
+      color: #00ffff;
       border-radius: 15px;
       padding: 20px;
       width: 300px;
-      box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+      border: 1px solid #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
       font-weight: bold;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.4s ease;
+      font-family: 'Courier New', monospace;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .song::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .song:hover::before {
+      left: 100%;
     }
 
     .song:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+      border-color: #ff00ff;
+      color: #ffffff;
     }
 
     .song iframe {
-      border-radius: 12px;
-      border: 3px solid #963956;
+      border-radius: 10px;
+      border: 2px solid #00ffff;
       background-color: #000;
       width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .song:hover iframe {
+      border-color: #ff00ff;
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
     }
 
     /* Spotify Embed Styling */
     .spotify-embed {
-      border-radius: 12px;
-      border: 3px solid #963956;
+      border-radius: 10px;
+      border: 2px solid #00ffff;
       background-color: #000;
     }
 
@@ -261,21 +437,43 @@
       width: 560px;
     }
 
-    /* GALLERY SECTION - UPDATED */
+    /* GALLERY SECTION - TECH THEME */
     #gallery {
       padding: 80px 60px;
-      background: linear-gradient(135deg, #963956 0%, #8c304a 100%);
-      color: white;
+      background: linear-gradient(135deg, rgba(16, 16, 32, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+      color: #e0e0e0;
       text-align: center;
+      border: 1px solid #00ffff;
+      margin: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+      position: relative;
     }
 
     #gallery h2 {
-      color: pink;
-      font-family: 'algerian';
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Courier New', monospace;
       font-size: 34px;
       margin-bottom: 30px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      animation: sparkle 2s ease-in-out infinite;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+      animation: textBuildUp 2s ease-out;
+      position: relative;
+    }
+
+    @keyframes textBuildUp {
+      0% { 
+        letter-spacing: 20px;
+        opacity: 0;
+        filter: blur(10px);
+      }
+      100% { 
+        letter-spacing: normal;
+        opacity: 1;
+        filter: blur(0);
+      }
     }
 
     .gallery-intro {
@@ -283,13 +481,14 @@
       margin: 0 auto 50px;
       font-size: 20px;
       line-height: 1.0;
-      color: pink;
-      font-family: 'Times New Roman', serif;
-      background: rgba(255,255,255,0.1);
+      color: #b8b8b8;
+      font-family: 'Courier New', monospace;
+      background: rgba(16, 16, 32, 0.6);
       padding: 20px;
-      border-radius: 20px;
+      border-radius: 15px;
+      border: 1px solid #00ffff;
       backdrop-filter: blur(10px);
-      animation: fadeUp 1s ease;
+      animation: fadeInUp 1s ease;
     }
 
     .gallery-buttons {
@@ -301,17 +500,17 @@
     }
 
     .gallery-btn {
-      background: linear-gradient(145deg, #CCA1A1, #ffb3d9);
-      color: #963956;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      color: #0c0c0c;
       border: none;
       padding: 14px 28px;
-      border-radius: 30px;
+      border-radius: 25px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.4s ease;
-      font-family: 'Times New Roman', serif;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      font-family: 'Courier New', monospace;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
       position: relative;
       overflow: hidden;
     }
@@ -323,7 +522,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       transition: left 0.5s;
     }
 
@@ -332,17 +531,17 @@
     }
 
     .gallery-btn:hover {
-      background: linear-gradient(145deg, #ffb3d9, #ff8ac6);
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      color: white;
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+      color: #0c0c0c;
     }
 
     .gallery-btn.active {
-      background: linear-gradient(145deg, #ff8ac6, #ff69b4);
-      color: white;
+      background: linear-gradient(135deg, #ff00ff, #ff00ff);
+      color: #0c0c0c;
       transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(255,105,180,0.4);
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
     }
 
     .photo-grid {
@@ -352,7 +551,7 @@
       justify-content: center;
       max-width: 1400px;
       margin: 0 auto;
-      animation: fadeUp 0.8s ease;
+      animation: fadeInUp 0.8s ease;
     }
 
     .photo-grid.active {
@@ -360,35 +559,36 @@
     }
 
     .polaroid-frame {
-      background: pink;
+      background: rgba(16, 16, 32, 0.8);
       padding: 18px 18px 35px 18px;
-      border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      transform: rotate(var(--rotate, 1deg));
+      border-radius: 10px;
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      transform: perspective(1000px) rotateY(var(--rotate, 0deg));
       transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       width: 200px;
       height: 200px;
       margin: 0 auto;
       position: relative;
       overflow: hidden;
-      animation: float 4s ease-in-out infinite;
-      animation-delay: calc(var(--delay, 0) * 0.1s);
+      cursor: pointer;
     }
 
-    .polaroid-frame::after {
+    .polaroid-frame::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+      background: linear-gradient(135deg, transparent 0%, rgba(0, 255, 255, 0.1) 100%);
       pointer-events: none;
     }
 
     .polaroid-frame:hover {
-      transform: rotate(0deg) scale(1.08);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+      transform: perspective(1000px) rotateY(0deg) scale(1.08);
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+      border-color: #ff00ff;
       z-index: 10;
     }
 
@@ -396,22 +596,22 @@
       width: 100%;
       height: 190px;
       object-fit: cover;
-      border: 2px solid #f0f0f0;
-      border-radius: 4px;
-      background: linear-gradient(45deg, #f8f8f8, #e8e8e8);
+      border: 2px solid #00ffff;
+      border-radius: 5px;
+      background: linear-gradient(45deg, #1a1a2e, #16213e);
       display: block;
       transition: all 0.4s ease;
     }
 
     .polaroid-frame:hover .polaroid-img {
       transform: scale(1.05);
-      border-color: #ffb3d9;
+      border-color: #ff00ff;
     }
 
     .polaroid-label {
       text-align: center;
-      color: #963956;
-      font-family: 'Times New Roman', serif;
+      color: #00ffff;
+      font-family: 'Courier New', monospace;
       font-size: 15px;
       margin-top: 12px;
       font-weight: bold;
@@ -420,68 +620,82 @@
     }
 
     .polaroid-frame:hover .polaroid-label {
-      color: #ff69b4;
+      color: #ff00ff;
     }
 
-    /* Random rotation for polaroids */
-    .polaroid-frame:nth-child(odd) {
-      --rotate: -1deg;
-    }
-    .polaroid-frame:nth-child(even) {
-      --rotate: 2deg;
-    }
-    .polaroid-frame:nth-child(3n) {
-      --rotate: 0.5deg;
-    }
-    .polaroid-frame:nth-child(4n) {
-      --rotate: -1.5deg;
+    /* Modal for full image view */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
     }
 
-    /* Animation delays */
-    .polaroid-frame:nth-child(1) { --delay: 1; }
-    .polaroid-frame:nth-child(2) { --delay: 2; }
-    .polaroid-frame:nth-child(3) { --delay: 3; }
-    .polaroid-frame:nth-child(4) { --delay: 4; }
-    .polaroid-frame:nth-child(5) { --delay: 5; }
-    .polaroid-frame:nth-child(6) { --delay: 6; }
-    .polaroid-frame:nth-child(7) { --delay: 7; }
-    .polaroid-frame:nth-child(8) { --delay: 8; }
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid #00ffff;
+      border-radius: 15px;
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
+      animation: modalAppear 0.5s ease;
+    }
 
-    /* CONTACT SECTION */
+    @keyframes modalAppear {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #ff00ff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .close:hover {
+      color: #00ffff;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+      transform: scale(1.2);
+    }
+
+    /* CONTACT SECTION - TECH THEME */
     #contact {
       padding: 80px 60px;
-      background: linear-gradient(135deg, #8c304a 0%, #963956 100%);
-      color: white;
+      background: linear-gradient(135deg, rgba(16, 16, 32, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+      color: #e0e0e0;
       text-align: center;
+      border: 1px solid #00ffff;
+      margin: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
       position: relative;
       overflow: hidden;
     }
 
-    /* Bubble Animations */
-    .bubble {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: bubbleFloat 15s infinite linear;
-      pointer-events: none;
-    }
-
-    .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-delay: 0s; }
-    .bubble:nth-child(2) { width: 25px; height: 25px; left: 20%; animation-delay: 2s; }
-    .bubble:nth-child(3) { width: 35px; height: 35px; left: 30%; animation-delay: 4s; }
-    .bubble:nth-child(4) { width: 20px; height: 20px; left: 40%; animation-delay: 6s; }
-    .bubble:nth-child(5) { width: 30px; height: 30px; left: 50%; animation-delay: 8s; }
-    .bubble:nth-child(6) { width: 45px; height: 45px; left: 60%; animation-delay: 10s; }
-    .bubble:nth-child(7) { width: 25px; height: 25px; left: 70%; animation-delay: 12s; }
-    .bubble:nth-child(8) { width: 35px; height: 35px; left: 80%; animation-delay: 14s; }
-
     #contact h2 {
-      color: pink;
-      font-family: 'algerian';
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Courier New', monospace;
       font-size: 34px;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      animation: sparkle 2s ease-in-out infinite;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+      animation: textGlow 2s ease-in-out infinite alternate;
     }
 
     .contact-intro {
@@ -489,21 +703,26 @@
       margin: 0 auto 40px;
       font-size: 20px;
       line-height: 1.6;
-      color: pink;
-      font-family: 'Times New Roman', serif;
-      background: rgba(255,255,255,0.1);
+      color: #b8b8b8;
+      font-family: 'Courier New', monospace;
+      background: rgba(16, 16, 32, 0.6);
       padding: 25px;
-      border-radius: 20px;
+      border-radius: 15px;
+      border: 1px solid #00ffff;
       backdrop-filter: blur(10px);
-      animation: fadeUp 1s ease;
+      animation: fadeInUp 1s ease;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
     }
 
     .contact-title {
-      color: #ffb3d9;
-      font-family: 'algerian';
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Courier New', monospace;
       font-size: 28px;
       margin-bottom: 40px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
       animation: pulse 2s ease-in-out infinite;
     }
 
@@ -516,39 +735,64 @@
     }
 
     .contact-card {
-      background: rgba(255,255,255,0.1);
+      background: rgba(16, 16, 32, 0.6);
       padding: 30px;
-      border-radius: 20px;
+      border-radius: 15px;
+      border: 1px solid #00ffff;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
       transition: all 0.4s ease;
-      animation: fadeUp 1s ease;
+      animation: fadeInUp 1s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
 
     .contact-card:hover {
       transform: translateY(-10px);
-      background: rgba(255,255,255,0.15);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      background: rgba(16, 16, 32, 0.8);
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+      border-color: #ff00ff;
     }
 
     .contact-icon {
       font-size: 40px;
       margin-bottom: 15px;
       display: block;
+      color: #00ffff;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover .contact-icon {
+      color: #ff00ff;
+      text-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+      transform: scale(1.2);
     }
 
     .contact-card h3 {
-      color: #ffb3d9;
-      font-family: 'Times New Roman', serif;
+      color: #00ffff;
+      font-family: 'Courier New', monospace;
       font-size: 22px;
       margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover h3 {
+      color: #ff00ff;
+      text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
     }
 
     .contact-card p {
-      color: white;
+      color: #b8b8b8;
       font-size: 18px;
-      font-family: 'Times New Roman', serif;
+      font-family: 'Courier New', monospace;
       margin: 0;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover p {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
     }
 
     .social-section {
@@ -556,11 +800,14 @@
     }
 
     .social-title {
-      color: #ffb3d9;
-      font-family: 'algerian';
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Courier New', monospace;
       font-size: 28px;
       margin-bottom: 30px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
       animation: pulse 2s ease-in-out infinite;
     }
 
@@ -573,19 +820,21 @@
     }
 
     .social-card {
-      background: rgba(255,255,255,0.1);
+      background: rgba(16, 16, 32, 0.6);
       padding: 30px 20px;
-      border-radius: 20px;
+      border-radius: 15px;
+      border: 1px solid #00ffff;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
       transition: all 0.4s ease;
-      animation: fadeUp 1s ease;
+      animation: fadeInUp 1s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     }
 
     .social-card:hover {
       transform: translateY(-10px) scale(1.02);
-      background: rgba(255,255,255,0.15);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      background: rgba(16, 16, 32, 0.8);
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+      border-color: #ff00ff;
     }
 
     .social-logo {
@@ -594,33 +843,48 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 15px;
-      border: 3px solid rgba(255,255,255,0.3);
+      border: 3px solid #00ffff;
       transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
     }
 
     .social-card:hover .social-logo {
       transform: scale(1.1);
-      border-color: #ffb3d9;
+      border-color: #ff00ff;
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
     }
 
     .social-card h4 {
-      color: #ffb3d9;
-      font-family: 'Times New Roman', serif;
+      color: #00ffff;
+      font-family: 'Courier New', monospace;
       font-size: 20px;
       margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .social-card:hover h4 {
+      color: #ff00ff;
+      text-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
     }
 
     .social-card p {
-      color: white;
+      color: #b8b8b8;
       font-size: 16px;
-      font-family: 'Times New Roman', serif;
+      font-family: 'Courier New', monospace;
       margin: 0 0 20px 0;
-      opacity: 0.9;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .social-card:hover p {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
     }
 
     .social-btn {
-      background: linear-gradient(145deg, #CCA1A1, #ffb3d9);
-      color: #963956;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      color: #0c0c0c;
       border: none;
       padding: 12px 25px;
       border-radius: 25px;
@@ -628,27 +892,31 @@
       font-weight: bold;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-family: 'Times New Roman', serif;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      font-family: 'Courier New', monospace;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
     }
 
     .social-btn:hover {
-      background: linear-gradient(145deg, #ffb3d9, #ff8ac6);
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      color: white;
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+      color: #0c0c0c;
     }
 
     footer {
-      background-color: #CCA1A1;
-      color: #963956;
+      background: rgba(16, 16, 32, 0.9);
+      color: #00ffff;
       text-align: center;
-      padding: 10px;
+      padding: 20px;
       font-size: 16px;
       font-weight: bold;
       letter-spacing: 0.5px;
+      border-top: 1px solid #00ffff;
+      font-family: 'Courier New', monospace;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
 
+    /* Responsive Design */
     @media (max-width: 1200px) {
       .photo-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -673,6 +941,7 @@
       .main-section {
         flex-direction: column;
         text-align: center;
+        padding: 40px 20px;
       }
 
       .intro {
@@ -729,15 +998,35 @@
       .contact-card, .social-card {
         padding: 20px 15px;
       }
+      
+      header {
+        padding: 8px 20px;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      nav {
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
 
 <body>
+<!-- Tech Background Elements -->
+<div class="tech-bg">
+  <div class="grid-line" style="top: 20%; height: 1px; width: 100%;"></div>
+  <div class="grid-line" style="top: 40%; height: 1px; width: 100%;"></div>
+  <div class="grid-line" style="top: 60%; height: 1px; width: 100%;"></div>
+  <div class="grid-line" style="top: 80%; height: 1px; width: 100%;"></div>
+  <div class="floating-tech" style="width: 100px; height: 100px; top: 10%; left: 10%;"></div>
+  <div class="floating-tech" style="width: 150px; height: 150px; top: 60%; left: 80%;"></div>
+  <div class="floating-tech" style="width: 80px; height: 80px; top: 30%; left: 70%;"></div>
+</div>
 
 <!-- HEADER -->
 <header>
-  <h1>&#128151; NURIN NATASYA &#128151;</h1>
+  <h1>💻 NURIN NATASYA 💻</h1>
   <nav>
     <a href="#home">Home</a> |
     <a href="#about">About</a> |
@@ -752,17 +1041,17 @@
   <img src="picture1.jpg" alt="Photo of Nurin Natasya" class="profile-img">
   
   <div class="intro">
-    <p class="welcome">Welcome to my portfolio website.</p>
+    <p class="welcome">Welcome to my tech portfolio.</p>
     <p class="details">
       Hi, I'm Nurin Natasya — someone who loves creativity, aesthetic and connecting with people.
-      This page is a little glimpse of my world 🌈
+      This page is a little glimpse of my world in digital form 🌈
     </p>
   </div>
 </section>
 
 <!-- ABOUT SECTION -->
 <section id="about">
-  <h2>BIODATA ABOUT ME &#128151;</h2>
+  <h2>BIODATA ABOUT ME 💻</h2>
 
   <div class="about-content">
     <div class="about-photo">
@@ -803,7 +1092,7 @@
 <section id="songs">
   <h2>My Hobby — Listening to Music 🎧</h2>
 
-  <p style="max-width:700px; margin:auto; font-size:20px; color:pink; font-family:'Times New Roman';">
+  <p style="max-width:700px; margin:auto; font-size:20px; color:#b8b8b8; font-family:'Courier New';">
     Music has always been my escape. Whether it's Malay vibes, English hits, or deep galau songs,
     listening to music helps me relax, reflect, and feel connected to my emotions 🎶.
     Here are my favourite playlists by genre!
@@ -812,12 +1101,14 @@
   <br><br>
 
   <!-- ========== SPOTIFY MAIN PLAYLIST ========== -->
-  <h2 style="color:#ffb3d9; font-family:algerian;">🎀 MY FAVORITE SPOTIFY PLAYLIST 🎀</h2>
+  <h2 style="background:linear-gradient(45deg, #ff00ff, #00ffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-family:'Courier New';">
+    💿 MY FAVORITE SPOTIFY PLAYLIST 💿
+  </h2>
   
   <div class="song-list">
     <div class="song wide-song">
-      <p style="color:#963956; font-size:18px; margin-bottom:10px;">✨ VIBING PLAYLIST ✨</p>
-       <p style="color:#963956; font-size:16px; margin-bottom:10px;">✨ CLICK TO LISTEN THE VIBING PART ✨</p>
+      <p style="color:#00ffff; font-size:18px; margin-bottom:10px;">✨ VIBING PLAYLIST ✨</p>
+       <p style="color:#00ffff; font-size:16px; margin-bottom:10px;">✨ CLICK TO LISTEN THE VIBING PART ✨</p>
       <iframe 
         src="https://open.spotify.com/embed/playlist/47Qj9UUwAMHqB9LcweGJcM?utm_source=generator&theme=0" 
         width="100%" 
@@ -856,35 +1147,35 @@
   <!-- Sunset Gallery -->
   <div id="sunset-gallery" class="photo-grid active">
     <!-- 8 Sunset Photos -->
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset1.jpg')">
       <img src="sunset1.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset2.jpg')">
       <img src="sunset2.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset3.jpg')">
       <img src="sunset3.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset4.jpg')">
       <img src="sunset4.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset5.jpg')">
       <img src="sunset5.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset6.jpg')">
       <img src="sunset6.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset7.jpg')">
       <img src="sunset7.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('sunset8.jpg')">
       <img src="sunset8.jpg" alt="Beautiful sunset" class="polaroid-img">
     </div>
   </div>
@@ -892,35 +1183,35 @@
   <!-- Foods Gallery -->
   <div id="foods-gallery" class="photo-grid">
     <!-- 8 Food Photos -->
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('food1.jpg')">
       <img src="food1.jpg" alt="Delicious food" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('food2.jpg')">
       <img src="food2.jpg" alt="Delicious food" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('food3.jpg')">
       <img src="food3.jpg" alt="Delicious food" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('food4.jpg')">
       <img src="food4.jpg" alt="Delicious food" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('food5.jpg')">
       <img src="food5.jpg" alt="Delicious food" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('food6.jpg')">
       <img src="food6.jpg" alt="Delicious food" class="polaroid-img">
     </div>
 
-     <div class="polaroid-frame">
+     <div class="polaroid-frame" onclick="openModal('food7.jpg')">
       <img src="food7.jpg" alt="Delicious food" class="polaroid-img">
     </div>
       
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('food8.jpg')">
       <img src="food8.jpg" alt="Delicious food" class="polaroid-img">
     </div>
   </div>
@@ -928,35 +1219,35 @@
   <!-- Myself Gallery -->
   <div id="myself-gallery" class="photo-grid">
     <!-- 8 Myself Photos -->
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself1.jpg')">
       <img src="myself1.jpg" alt="My picture" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself2.jpg')">
       <img src="myself2.jpg" alt="My picture" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself3.jpg')">
       <img src="myself3.jpg" alt="My picture" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself4.jpg')">
       <img src="myself4.jpg" alt="My picture" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself5.jpg')">
       <img src="myself5.jpg" alt="My picture" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself6.jpg')">
       <img src="myself6.jpg" alt="My picture" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself7.jpg')">
       <img src="myself7.jpg" alt="My picture" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('myself8.jpg')">
       <img src="myself8.jpg" alt="My picture" class="polaroid-img">
     </div>
   </div>
@@ -964,35 +1255,35 @@
   <!-- Friends Gallery -->
   <div id="friends-gallery" class="photo-grid">
     <!-- 8 Friends Photos -->
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends1.jpg')">
       <img src="friends1.jpg" alt="My friend" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends2.jpg')">
       <img src="friends2.jpg" alt="My friend" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends3.jpg')">
       <img src="friends3.jpg" alt="My friend" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends4.jpg')">
       <img src="friends4.jpg" alt="My friend" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends5.jpg')">
       <img src="friends5.jpg" alt="My friend" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends6.jpg')">
       <img src="friends6.jpg" alt="My friend" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends7.jpg')">
       <img src="friends7.jpg" alt="My friend" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('friends8.jpg')">
       <img src="friends8.jpg" alt="My friend" class="polaroid-img">
     </div>
   </div>
@@ -1000,53 +1291,49 @@
   <!-- Randoms Gallery -->
   <div id="randoms-gallery" class="photo-grid">
     <!-- 8 Random Photos -->
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms1.jpg')">
       <img src="randoms1.jpg" alt="Random moment" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms2.jpg')">
       <img src="randoms2.jpg" alt="Random moment" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms3.jpg')">
       <img src="randoms3.jpg" alt="Random moment" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms4.jpg')">
       <img src="randoms4.jpg" alt="Random moment" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms5.jpg')">
       <img src="randoms5.jpg" alt="Random moment" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms6.jpg')">
       <img src="randoms6.jpg" alt="Random moment" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms7.jpg')">
       <img src="randoms7.jpg" alt="Random moment" class="polaroid-img">
     </div>
     
-    <div class="polaroid-frame">
+    <div class="polaroid-frame" onclick="openModal('randoms8.jpg')">
       <img src="randoms8.jpg" alt="Random moment" class="polaroid-img">
     </div>
   </div>
 </section>
 
+<!-- Image Modal -->
+<div id="imageModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
 <!-- CONTACT SECTION -->
 <section id="contact">
-  <!-- Bubble Animations -->
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  
-  <h2>CONTACT ME 💫</h2>
+  <h2>CONTACT ME 💻</h2>
   
   <div class="contact-intro">
     <p>Let's connect and create something beautiful together! ✨</p>
@@ -1114,7 +1401,7 @@
 
 <!-- FOOTER -->
 <footer>
-  © 2025 | little glimpse of Nurien's life
+  © 2025 | digital glimpse of Nurien's life
 </footer>
 
 <script>
@@ -1133,8 +1420,29 @@
     document.getElementById(category + '-gallery').classList.add('active');
     event.target.classList.add('active');
   }
+
+  // Modal functions for image viewing
+  function openModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'block';
+    modalImg.src = imageSrc;
+  }
+
+  function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
+  }
+
+  // Close modal when clicking outside the image
+  window.onclick = function(event) {
+    const modal = document.getElementById('imageModal');
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  }
 </script>
 
 </body>
 </html>
+
 
