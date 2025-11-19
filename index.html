@@ -213,12 +213,30 @@
       width: 300px;
       box-shadow: 0 10px 15px rgba(0,0,0,0.3);
       font-weight: bold;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .song:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.4);
     }
 
     .song iframe {
-      border-radius: 10px;
+      border-radius: 12px;
+      border: 3px solid #963956;
+      background-color: #000;
       width: 100%;
-      height: 180px;
+    }
+
+    /* Spotify Embed Styling */
+    .spotify-embed {
+      border-radius: 12px;
+      border: 3px solid #963956;
+      background-color: #000;
+    }
+
+    .wide-song {
+      width: 560px;
     }
 
     footer {
@@ -244,6 +262,11 @@
 
       .about-content {
         flex-direction: column;
+      }
+
+      .song, .wide-song {
+        width: 100%;
+        max-width: 300px;
       }
     }
   </style>
@@ -327,64 +350,120 @@
 
   <br><br>
 
-  <!-- ========== POP BALLAD PLAYLIST ========== -->
-  <h2 style="color:#ffb3d9; font-family:algerian;">🎀 POP BALLAD PLAYLIST 🎀</h2>
-
+  <!-- ========== SPOTIFY MAIN PLAYLIST ========== -->
+  <h2 style="color:#ffb3d9; font-family:algerian;">🎀 MY FAVORITE SPOTIFY PLAYLIST 🎀</h2>
+  
   <div class="song-list">
-    <div class="song">
-      <p>🎧 Song 1: "Sedetik Lebih" — Anuar Zain</p>
-      <button onclick="playSong('sedetik Lebih.mp3')">Play</button>
-    </div>
-
-    <div class="song">
-      <p>🎧 Song 2: "Kasih Tercipta" — Faizal Tahir</p>
-      <button onclick="playSong('Kasih Tercipta.mp3')">Play</button>
-    </div>
-
-    <div class="song">
-      <p>🎧 Song 3: "Menjaga Jodoh Orang Lain" — Ara Johari</p>
-      <button onclick="playSong('Menjaga Jodoh Orang Lain.mp3')">Play</button>
+    <div class="song wide-song">
+      <p style="color:#963956; font-size:20px; margin-bottom:15px;">✨ My Curated Vibes ✨</p>
+      <iframe 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DXb1RLKxkHZ77?utm_source=generator&theme=0" 
+        width="100%" 
+        height="380" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="spotify-embed">
+      </iframe>
     </div>
   </div>
 
-  <!-- ========== R&B PLAYLIST ========== -->
-  <h2 style="color:#ffb3d9; font-family:algerian; margin-top:60px;">🎶 R&B PLAYLIST 🎶</h2>
+  <!-- ========== POP BALLAD PLAYLISTS ========== -->
+  <h2 style="color:#ffb3d9; font-family:algerian; margin-top:60px;">🎀 POP BALLAD VIBES 🎀</h2>
 
   <div class="song-list">
     <div class="song">
-      <p>🎧 Song 1: "1 Of 1" — Kale Joseph</p>
-      <button onclick="playSong('1 Of 1.mp3')">Play</button>
+      <p style="color:#963956; font-size:18px; margin-bottom:10px;">💖 Malay Ballads</p>
+      <iframe 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1g0iEXLFycr?utm_source=generator" 
+        width="100%" 
+        height="280" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="spotify-embed">
+      </iframe>
     </div>
 
     <div class="song">
-      <p>🎧 Song 2: "Sial" — Mahalini</p>
-      <button onclick="playSong('sial.mp3')">Play</button>
+      <p style="color:#963956; font-size:18px; margin-bottom:10px;">🎤 Emotional Hits</p>
+      <iframe 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpdgoIcn6?utm_source=generator" 
+        width="100%" 
+        height="280" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="spotify-embed">
+      </iframe>
     </div>
 
     <div class="song">
-      <p>🎧 Song 3: "Luka" — Zynakal & Yonnyboii</p>
-      <button onclick="playSong('luka.mp3')">Play</button>
+      <p style="color:#963956; font-size:18px; margin-bottom:10px;">🌟 Chill Melodies</p>
+      <iframe 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4Wsb4d7NKfP?utm_source=generator" 
+        width="100%" 
+        height="280" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="spotify-embed">
+      </iframe>
     </div>
   </div>
 
-  <!-- PLAYER AREA -->
-  <div style="margin-top:60px;">
-    <h3 style="color:#ffd6e8; font-family:algerian;">🎬 Now Playing</h3>
+  <!-- ========== R&B PLAYLISTS ========== -->
+  <h2 style="color:#ffb3d9; font-family:algerian; margin-top:60px;">🎶 R&B & SOUL VIBES 🎶</h2>
 
-    <!-- CHANGE: Using audio instead of iframe -->
-    <audio id="musicPlayer" controls style="width:560px; border-radius:20px; border:4px solid #CCA1A1;"></audio>
+  <div class="song-list">
+    <div class="song">
+      <p style="color:#963956; font-size:18px; margin-bottom:10px;">🎧 Malay R&B</p>
+      <iframe 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX2L0IOB1CRq5?utm_source=generator" 
+        width="100%" 
+        height="280" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="spotify-embed">
+      </iframe>
+    </div>
+
+    <div class="song">
+      <p style="color:#963956; font-size:18px; margin-bottom:10px;">🎵 English R&B</p>
+      <iframe 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4SBhb3fqCJd?utm_source=generator" 
+        width="100%" 
+        height="280" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="spotify-embed">
+      </iframe>
+    </div>
+
+    <div class="song">
+      <p style="color:#963956; font-size:18px; margin-bottom:10px;">🔥 Trending R&B</p>
+      <iframe 
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX8mBRYewE6or?utm_source=generator" 
+        width="100%" 
+        height="280" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="spotify-embed">
+      </iframe>
+    </div>
   </div>
 
 </section>
-
-<!-- JAVASCRIPT PLAYER FUNCTION -->
-<script>
-  function playSong(file) {
-    const player = document.getElementById("musicPlayer");
-    player.src = file;  // load mp3
-    player.play();      // play mp3
-  }
-</script>
 
 <!-- FOOTER -->
 <footer>
@@ -392,6 +471,5 @@
 </footer>
 
 </body>
-
 </html>
 
