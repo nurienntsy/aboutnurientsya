@@ -326,6 +326,101 @@
       border-bottom: none;
     }
 
+    /* SKILLS SECTION STYLES */
+    .skills-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .skill-category {
+      background: rgba(16, 16, 32, 0.8);
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid #00ffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+      border-color: #ff00ff;
+    }
+
+    .skill-category h3 {
+      background: linear-gradient(45deg, #ff00ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+    }
+
+    .skill-item {
+      margin-bottom: 20px;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .skill-name {
+      color: #00ffff;
+      font-family: 'Courier New', monospace;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .skill-percent {
+      color: #ff00ff;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .skill-bar {
+      height: 12px;
+      background: rgba(0, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skill-progress {
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      position: relative;
+      transition: width 1.5s ease-in-out;
+      width: 0;
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
     /* SONG SECTION */
     #songs {
       padding: 80px 100px;
@@ -1052,39 +1147,103 @@
 
 <!-- ABOUT SECTION -->
 <section id="about">
-  <h2>BIODATA ABOUT ME &#128151; </h2>
+  <h2>MY SKILLS &#128151; </h2>
 
-  <div class="about-content">
-    <div class="about-photo">
-
-      <img src="picture2.jpg" alt="Nurin profile circle" class="circle-photo">
-
-      <div class="biodata">
-
-        <!-- TABLE BIODATA -->
-        <table class="biodata-table">
-          <tr><th colspan="2">PERSONAL DETAILS</th></tr>
-          <tr><td>Name:</td><td>Nurin Natasya binti Shopiee</td></tr>
-          <tr><td>Address:</td><td>No. 2106 Pokok Machang, 13300 Tasek Gelugor, Pulau Pinang</td></tr>
-          <tr><td>Email:</td><td>nuriennatasyaa@gmail.com</td></tr>
-          <tr><td>Mobile Phone:</td><td>+60 11-17621801</td></tr>
-        </table>
-
-        <table class="biodata-table">
-          <tr><th colspan="2">EDUCATION</th></tr>
-          <tr><td>Primary School:</td><td>SK Pokok Sena</td></tr>
-          <tr><td>Secondary School:</td><td>SMK Pokok Sena</td></tr>
-          <tr><td>University:</td><td>Diploma in Information Management (UiTM Kedah)</td></tr>
-        </table>
-
-        <table class="biodata-table">
-          <tr><th colspan="2">SKILLS</th></tr>
-          <tr><td>Soft Skills</td><td>Communication, Teamwork, Creativity, Problem Solving</td></tr>
-          <tr><td>Software Skills</td><td>Canva, Microsoft Office, Photoshop, HTML & CSS</td></tr>
-        </table>
-
+  <div class="skills-container">
+    <!-- Personal Skills -->
+    <div class="skill-category">
+      <h3>🌟 PERSONAL SKILLS</h3>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Time Management</span>
+          <span class="skill-percent">90%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="90"></div>
+        </div>
       </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Problem Solving</span>
+          <span class="skill-percent">90%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="90"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Teamwork</span>
+          <span class="skill-percent">95%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="95"></div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Software Skills -->
+    <div class="skill-category">
+      <h3>💻 SOFTWARE SKILLS</h3>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Microsoft Word</span>
+          <span class="skill-percent">95%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="95"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Microsoft Excel</span>
+          <span class="skill-percent">80%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="80"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Power Point</span>
+          <span class="skill-percent">80%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="80"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Skills -->
+    <div class="skill-category">
+      <h3>🎨 DESIGN SKILLS</h3>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Canva</span>
+          <span class="skill-percent">95%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="95"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">CapCut</span>
+          <span class="skill-percent">80%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="80"></div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">Web Design (HTML & CSS)</span>
+          <span class="skill-percent">70%</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-progress" data-width="70"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1432,10 +1591,22 @@
       modal.style.display = 'none';
     }
   }
+
+  // Animate skill bars on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    skillBars.forEach(bar => {
+      const width = bar.getAttribute('data-width');
+      setTimeout(() => {
+        bar.style.width = width + '%';
+      }, 500);
+    });
+  });
 </script>
 
 </body>
 </html>
+
 
 
 
